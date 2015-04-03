@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>{% block title %}When Suddenly...{% endblock title %}</title>
+    <link href='/static/fav.png' rel='shortcut icon'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+<link href='/static/style.css' rel='stylesheet' type='text/css' />
+<link href='/static/responsive.css' rel='stylesheet' type='text/css' />
+<meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+  </head>
+  <body>
+    <header>
+<a id="go-back-home" href="/"><img src="/static/scribble.png" alt="scribble" width="53" height="59"></a>
+<h2>When Suddenly...</h2>
+</header>
+
+    <div id='container'>
+      <div class="block">
+
+    <a target="_top" class="main" href="/about">About</a>
+
+    <a target="_blank" class="main" href="http://muan.co">Blog</a>
+
+    <a target="_blank" class="main" href="mailto:hello@muan.co">Email</a>
+
+    <a target="_blank" class="main" href="http://github.com/muan">GitHub</a>
+
+</div>
+      <div class="content">
+        {%  block content %}
+        {% endblock content %}
+      </div>
+
+    </div>
+    <footer>
+  <a href="http://github.com/muan/scribble" class="muted">built with Flask using Scribble theme</a>
+  <br />
+  <br />
+  <img src="/static/scribble2.png" alt="scribble" />
+</footer>
+  </body>
+</html>
