@@ -10,7 +10,9 @@ def hello_world():
 def story(room_name):
     """Return the story for a given room"""
     # This story taken from http://foldingstory.com/pfuf2/
-    return render_template('story.html', lines=[
+    return render_template('story.html',
+                           room_name=room_name,
+                           lines=[
         {"author": "lucielucie", "text": "Nobody knows how Saturn got its rings. But I have a theory."},
         {"author": "MoralEnd", "text": "A theory that has been ignored by pretty much everyone at this Cosmic Conference. It's really because my theory is so awesome that all these so-called academics are jealous. Saturn"},
         {"author": "MangoMania", "text": "should not be a planet anymore. We got rid of Pluto and no one misses it, so Saturn should be next, because real planets don't have rings. The Cosmic Conference started throwing"},
