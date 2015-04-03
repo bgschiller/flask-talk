@@ -38,14 +38,18 @@ def index():
     else:
         return redirect(url_for('login'))
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         session['username'] = request.form['username']
-        return redirect(url_for('story', room_name=rand_str(15)))
+        if 'next' in request.args:
+            room_name = request.args['next']
+        else:
+            room_name = rand_str(15)
+        return redirect(url_for('story', room_name=room_name))
     return render_template('login.html')
 
-@app.route('/logout')
+@app.route('/logout/')
 def logout():
     session.pop('username', None)
     return redirect(url_for('login'))
@@ -54,7 +58,7 @@ def logout():
 def story(room_name):
     """Return the story for a given room"""
     if 'username' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login', next=room_name))
 
     if request.method == 'POST':
         p = Paragraph(room=room_name,
@@ -66,6 +70,7 @@ def story(room_name):
 
     return render_template('story.html',
                            room_name=room_name,
+                           username=session['username'],
                            lines=Paragraph.query
                                  .filter_by(room=room_name)
                                  .order_by(Paragraph.id)

@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="block logged-in-user">
+        <p class="muted">Currently logged in as {{ username }}. <a href="/logout/">(logout)</a></p>
+    </div>
     <div class="article">
     {%  for line in lines %}
         <p>{{ line.text }} <span class="attribution muted">- {{ line.author }}</span></p>
