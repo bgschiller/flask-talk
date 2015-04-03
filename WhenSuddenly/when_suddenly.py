@@ -1,7 +1,25 @@
 from flask import Flask, render_template, request
+from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.debug = True
+
+db = SQLAlchemy(app)
+
+##################
+# Models
+
+class Paragraph(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    room = db.Column(db.String(15))
+    author = db.Column(db.String(63))
+    text = db.Column(db.Text())
+
+
+##################
+# Views
+
 @app.route('/')
 def hello_world():
     return 'Hello World!'
