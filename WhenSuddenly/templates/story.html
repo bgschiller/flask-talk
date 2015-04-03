@@ -2,6 +2,6 @@
 
 {% block content %}
 {%  for line in lines %}
-    <p>{{ line }}</p>
+    <p>{{ line.text }} <span class="attribution">- {{ line.author }}</span></p>
 {% endfor %}
 {% endblock content %}
