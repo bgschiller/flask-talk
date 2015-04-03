@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 app.debug = True
@@ -6,9 +6,11 @@ app.debug = True
 def hello_world():
     return 'Hello World!'
 
-@app.route('/story/<room_name>/')
+@app.route('/story/<room_name>/', methods=['GET', 'POST'])
 def story(room_name):
     """Return the story for a given room"""
+    if request.method == 'POST':
+        return "Received data to add to a story: {}".format(dict(request.form))
     # This story taken from http://foldingstory.com/pfuf2/
     return render_template('story.html',
                            room_name=room_name,
