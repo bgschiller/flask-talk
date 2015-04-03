@@ -4,7 +4,7 @@
     <div class="block logged-in-user">
         <p class="muted">Currently logged in as {{ username }}. <a href="/logout/">(logout)</a></p>
     </div>
-    <div class="article">
+    <div id="story" class="article">
     {%  for line in lines %}
         <p>{{ line.text }} <span class="attribution muted">- {{ line.author }}</span></p>
     {% endfor %}
@@ -23,12 +23,24 @@
 {% endblock content %}
 
 {% block javascript %}
+
 <script type="text/javascript">
-var updates = new EventSource('/stream/{{ room_num }}/?since={{ lines[-1].id }}');
+function append_paragraph(text, author){
+    var ptag = document.createElement('p'),
+        parts = [
+            text,
+            ' <span class="attribution muted">- ',
+            author,
+            '</span>'
+    ];
+    ptag.innerHTML = parts.join('');
+    document.getElementById('story').appendChild(ptag);
+}
+
+var updates = new EventSource('/stream/{{ room_name }}/?since={{ lines[-1].id }}');
 updates.onmessage = function (event) {
-     alert(event.data);
+    var payload = JSON.parse(event.data);
+    append_paragraph(payload.text, payload.author);
 };
-
-
 </script>
 {% endblock javascript %}
