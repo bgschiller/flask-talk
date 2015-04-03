@@ -19,8 +19,8 @@ body {
 img {
   border: none; }
 
-.logged-in-user {
-    padding-top:0px;
+.content .block.logged-in-user {
+    padding-top:0px !important;
     font-size: 13px;
 }
 
@@ -45,6 +45,7 @@ input[type="submit"] {
 
 span.attribution {
     float: right;
+    font-size: 14px;
 }
 
 .form-prompt {
