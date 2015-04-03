@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{%  for line in lines %}
-    <p>{{ line.text }} <span class="attribution">- {{ line.author }}</span></p>
-{% endfor %}
+    <div class="article">
+    {%  for line in lines %}
+        <p>{{ line.text }} <span class="attribution muted">- {{ line.author }}</span></p>
+    {% endfor %}
+    </div>
+    <div class="article">
+        <form action="/story/{{ room_name }}/" method="post">
+            <label class="form-prompt muted" for="new_paragraph">And then what happened?</label>
+            <textarea name="new_paragraph"></textarea>
+        </form>
+    </div>
 {% endblock content %}
