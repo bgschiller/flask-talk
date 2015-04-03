@@ -21,3 +21,14 @@
         </form>
     </div>
 {% endblock content %}
+
+{% block javascript %}
+<script type="text/javascript">
+var updates = new EventSource('/stream/{{ room_num }}/?since={{ lines[-1].id }}');
+updates.onmessage = function (event) {
+     alert(event.data);
+};
+
+
+</script>
+{% endblock javascript %}
