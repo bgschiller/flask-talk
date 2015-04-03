@@ -8,7 +8,11 @@
     </div>
     <div class="article">
         <form action="/story/{{ room_name }}/" method="post">
+            {% if lines %}
             <label class="form-prompt muted" for="new_paragraph">And then what happened?</label>
+            {% else %}
+            <label class="form-prompt muted" for="new_paragraph">How did it all start?</label>
+            {% endif %}
             <textarea name="new_paragraph"></textarea>
             <input type="submit" value="submit">
         </form>
