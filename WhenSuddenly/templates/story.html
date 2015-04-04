@@ -37,7 +37,7 @@ function append_paragraph(text, author){
     document.getElementById('story').appendChild(ptag);
 }
 
-var updates = new EventSource('/stream/{{ room_name }}/?since={{ lines[-1].id }}');
+var updates = new EventSource('/stream/{{ room_name }}/{% if lines %}?since={{ lines[-1].id }}{% endif %}');
 updates.onmessage = function (event) {
     var payload = JSON.parse(event.data);
     append_paragraph(payload.text, payload.author);
