@@ -29,7 +29,7 @@ class Paragraph(db.Model):
 # Helpers
 
 
-def rand_str(length):
+def rand_str(length=5):
     return ''.join(random.choice(string.letters + string.digits)
                    for _ in range(length))
 
@@ -50,7 +50,7 @@ def event_stream(room_name, latest_event=None):
 @app.route('/')
 def index():
     if 'username' in session:
-        return redirect(url_for('story', room_name=rand_str(5)))
+        return redirect(url_for('story', room_name=rand_str()))
     else:
         return redirect(url_for('login'))
 
@@ -61,7 +61,7 @@ def login():
         if 'next' in request.args:
             room_name = request.args['next']
         else:
-            room_name = rand_str(15)
+            room_name = rand_str()
         return redirect(url_for('story', room_name=room_name))
     return render_template('login.html')
 
